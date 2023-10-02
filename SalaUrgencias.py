@@ -168,6 +168,21 @@ class SalaUrgencias:
             print(f" ED: ", self.estadoED)
             print(f" PD : ", self.estadoPD)
 
+    def darAlta(self):
+        for paciente in self.estadoEA:
+            numero = random.randint(1, 6)
+            if numero == 1:
+               paciente.estado_salida = "A"
+            elif numero == 2:
+                paciente.estado_salida = "AM"
+            elif numero == 3:
+               paciente.estado_salida = "AV"
+            elif numero == 4:
+                paciente.estado_salida = "RH"
+            elif numero == 5:
+                paciente.estado_salida = "ME"
+            elif numero == 6:
+                paciente.estado_salida = "M"
 
 
 
