@@ -26,6 +26,10 @@ class Paciente:
         else:
             return "Urgencias Leves"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Nombre: {self.nombre}\nEdad: {self.edad}\nSexo: {self.sexo}\nTriage: {self.triage}"
+
+    def __repr__(self) -> str:  # este método
+        return f"Nombre: {self.nombre}\nEdad: {self.edad}\nSexo: {self.sexo}\nTriage: {self.triage}"
+
 

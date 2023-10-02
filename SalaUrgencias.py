@@ -8,6 +8,10 @@ class SalaUrgencias:
         self.pacientes_b = []
         self.pacientes_c = []
         self.pacientes_d = []
+        self.estadoEA = []
+        self.estadoPD = []
+        self.estadoPC = []
+        self.estadoED = []
         self.reloj = 0  # Inicializamos el reloj en 0
 
     def ingresar_paciente(self, paciente):
@@ -19,8 +23,158 @@ class SalaUrgencias:
             self.pacientes_c.append(paciente)
         else:
             self.pacientes_d.append(paciente)
+        print(f" PACIENTESA: ", self.pacientes_a)
+        print(f" PACIENTESB: ", self.pacientes_b)
+        print(f" PACIENTESC: ", self.pacientes_c)
+        print(f" PACIENTESD: ", self.pacientes_d)
+
 
     def atender_pacientes(self):
+
+        if len(self.pacientes_a) > 0:
+            i = 0
+            while i <= len(self.pacientes_a):
+                numero = random.randint(1, 50)
+                if numero <= 12:
+                    pac = self.pacientes_a.pop()
+                    self.estadoEA.append(pac)
+                elif 12 < numero < 25:
+                    pac = self.pacientes_a.pop()
+                    self.estadoPD.append(pac)
+                elif 25 <= numero < 37:
+                    pac = self.pacientes_a.pop()
+                    self.estadoPC.append(pac)
+                elif 37 <= numero <= 50:
+                    pac = self.pacientes_a.pop()
+                    self.estadoED.append(pac)
+                i += 1
+        if len(self.pacientes_b) > 0:
+            i = 0
+            while i < len(self.pacientes_b):
+                numero = random.randint(1, 50)
+                if numero <= 12:
+                    pac = self.pacientes_b.pop()
+                    self.estadoEA.append(pac)
+                elif 12 < numero < 25:
+                    pac = self.pacientes_b.pop()
+                    self.estadoPD.append(pac)
+                elif 25 <= numero < 37:
+                    pac = self.pacientes_b.pop()
+                    self.estadoPC.append(pac)
+                elif 37 <= numero <= 50:
+                    pac = self.pacientes_b.pop()
+                    self.estadoED.append(pac)
+                i += 1
+        if len(self.pacientes_c) > 0:
+            i = 0
+            while i < len(self.pacientes_c):
+                numero = random.randint(1, 50)
+                if numero <= 12:
+                    pac = self.pacientes_c.pop()
+                    self.estadoEA.append(pac)
+                elif 12 < numero < 25:
+                    pac = self.pacientes_c.pop()
+                    self.estadoPD.append(pac)
+                elif 25 <= numero < 37:
+                    pac = self.pacientes_c.pop()
+                    self.estadoPC.append(pac)
+                elif 37 <= numero <= 50:
+                    pac = self.pacientes_c.pop()
+                    self.estadoED.append(pac)
+                i += 1
+        if len(self.pacientes_d) > 0:
+            i = 0
+            while i < len(self.pacientes_d):
+                numero = random.randint(1, 50)
+                if numero <= 12:
+                    pac = self.pacientes_d.pop()
+                    self.estadoEA.append(pac)
+                elif 12 < numero < 25:
+                    pac = self.pacientes_d.pop()
+                    self.estadoPD.append(pac)
+                elif 25 <= numero < 37:
+                    pac = self.pacientes_d.pop()
+                    self.estadoPC.append(pac)
+                elif 37 <= numero <= 50:
+                    pac = self.pacientes_d.pop()
+                    self.estadoED.append(pac)
+                i += 1
+        print(f" EA: ", self.estadoEA)
+        print(f" PC: ", self.estadoPC)
+        print(f" ED: ", self.estadoED)
+        print(f" PD : ", self.estadoPD)
+
+
+
+    def transicion_estado(self):
+        while len(self.estadoEA) != 0:
+            numero = random.randint(1, 100)
+            if 50 > numero >= 25:
+                pac = self.estadoEA.pop(0)
+                self.estadoPC.append(pac)
+            elif 50 <= numero < 75:
+                pac = self.estadoEA.pop(0)
+                self.estadoPD.append(pac)
+            elif 75 <= numero <= 100:
+                pac = self.estadoEA.pop(0)
+                self.estadoED.append(pac)
+            if len(self.estadoEA) <= 2:
+                break
+
+        while len(self.estadoPC) != 0:
+            numero = random.randint(1, 100)
+            if len(self.estadoPC) <= 2:
+                break
+            if 50 > numero >= 25:
+                pac = self.estadoPC.pop(0)
+                self.estadoEA.append(pac)
+            elif 50 <= numero < 75:
+                pac = self.estadoPC.pop(0)
+                self.estadoPD.append(pac)
+            elif 75 <= numero <= 100:
+                pac = self.estadoPC.pop(0)
+                self.estadoED.append(pac)
+
+        while len(self.estadoED) != 0:
+            numero = random.randint(1, 100)
+            if len(self.estadoED) < 2:
+                break
+            if 50 > numero >= 25:
+                pac = self.estadoED.pop(0)
+                self.estadoEA.append(pac)
+            elif 50 <= numero < 75:
+                pac = self.estadoED.pop(0)
+                self.estadoPC.append(pac)
+            elif 75 <= numero <= 100:
+                pac = self.estadoED.pop(0)
+                self.estadoPD.append(pac)
+
+        while len(self.estadoPD) != 0:
+            numero = random.randint(1, 100)
+            if len(self.estadoPD) < 2:
+                break
+            if 50 > numero >= 25:
+                pac = self.estadoPD.pop(0)
+                self.estadoEA.append(pac)
+            elif 50 <= numero < 75:
+                pac = self.estadoPD.pop(0)
+                self.estadoPC.append(pac)
+            elif 75 <= numero <= 100:
+                pac = self.estadoPD.pop(0)
+                self.estadoED.append(pac)
+
+            print(f" EA: ", self.estadoEA)
+            print(f" PC: ", self.estadoPC)
+            print(f" ED: ", self.estadoED)
+            print(f" PD : ", self.estadoPD)
+
+
+
+
+
+
+
+    def atenderrr_pacientes(self):
         estados = ['a', 'b', 'c', 'd']
         for estado in estados:
             print(f"Atendiendo pacientes en estado {estado}:")
@@ -122,6 +276,3 @@ class SalaUrgencias:
         if len(medicamentos_acumulados) >= 10:
             print("El farmacéutico está atendiendo las órdenes de medicamentos acumuladas.")
             # Aquí puedes agregar la lógica para procesar las órdenes del laboratorio
-
-
-
